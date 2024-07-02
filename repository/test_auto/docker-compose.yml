@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  format:
+    build: .
+    command: ["black", ".", "--check"]
+    volumes:
+      - .:/app
+
+  lint:
+    build: .
+    command: ["flake8", "."]
+    volumes:
+      - .:/app
+
+  test:
+    build: .
+    command: ["pytest", "tests/"]
+    volumes:
+      - .:/app
