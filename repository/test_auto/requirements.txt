@@ -1,6 +1,0 @@
-selenium
-webdriver-manager
-pytest
-black
-flake8
-pylint

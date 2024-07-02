@@ -1,4 +1,0 @@
-[flake8]
-exclude =
-    # No need to traverse virtualenv
-    .venv,
