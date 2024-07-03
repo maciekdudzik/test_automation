@@ -1,0 +1,1 @@
+pyresttest http://localhost:8080 /api.yml --print-bodies

@@ -1,0 +1,39 @@
+---
+- config:
+    - testset: "Basic tests"
+    - timeout: 100
+
+- test:
+    - name: "Basic get"
+    - url: "/articles"
+    - curl_option_followlocation: True
+
+- test:
+    - name: "Create article"
+    - url: "/articles"
+    - method: "POST"
+    - headers: {"Content-Type": "application/json"}
+    - body: '{"title": "New Article", "content": "Article content"}'
+    - expected_status: [201]
+    - validators:
+        - compare:
+            - jsonpath_mini: "title"
+            - expected: "New Article"
+
+- test:
+    - name: "Edit article"
+    - url: "/articles/1"
+    - method: "PUT"
+    - headers: {"Content-Type": "application/json"}
+    - body: '{"title": "Updated Title", "content": "Updated content"}'
+    - expected_status: [200]
+    - validators:
+        - compare:
+            - jsonpath_mini: "title"
+            - expected: "Updated Title"
+
+- test:
+    - name: "Delete article"
+    - url: "/articles/1"
+    - method: "DELETE"
+    - expected_status: [204]
